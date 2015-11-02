@@ -42,23 +42,23 @@ void	write_in_file()
 	ofstream MyFlux(name_file.c_str());
 	string path;
 	
-	cout << "Hello! for your first time, you have to write your path here : \n";
+	cout << "Hello! its your first time here so you have to type your path here : \n";
 	cin >> path;
 	if (MyFlux)
 	{
 		MyFlux << path;
 	}
-	print_message("Your path is save, start again the program to change your realmlist! :)");
+	print_message("Your path is saved, start again the program to change your realmlist! :)");
 }
 
 void	print_error()
 {
-	print_message("Name server wrong, try another please!");
+	print_message("Name server is wrong, try another please!");
 }
 
 void	end_program()
 {
-	print_message("end of program too many error, im sorry!");
+	print_message("end of program too many errors, im sorry!");
 	system("pause");
 	exit(1);
 }
