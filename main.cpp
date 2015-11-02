@@ -100,7 +100,7 @@ void	write_ok(List *ptr, int error)
 	{
 		print_message("can't write in this file, sorry");
 	}
-	print_message("your realmlist has been change!");
+	print_message("your realmlist has been changed!");
 }
 
 int main( )
