@@ -41,7 +41,7 @@ void	write_in_file()
 	string const name_file("test.txt");
 	ofstream MyFlux(name_file.c_str());
 	string path;
-	
+
 	cout << "Hello! its your first time here so you have to type your path here : \n";
 	cin >> path;
 	if (MyFlux)
@@ -110,7 +110,7 @@ int main( )
 	ifstream fichier("test.txt", ios::in);
 	string contenu;
 	string ligne;
-	
+
 	while (getline(fichier, ligne))
 			ptr.AddNode(ligne);
 	fichier.close();

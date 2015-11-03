@@ -112,6 +112,7 @@ bool	List::IfSomethingInNode()
 void	List::AddNode(string addData)
 {
 	nodePtr	n = new node;
+
 	n->next = NULL;
 	n->data = addData;
 
