@@ -63,6 +63,22 @@ bool	end_program()
 	return false;
 }
 
+bool		add_real( void )
+{
+  string	reply;
+
+  print_message("Do you want to add a realmlist?");
+  print_message("type yes or no");
+  cin >> reply;
+  if (reply == "no")
+    return false;
+  else
+    {
+      
+    }
+  return true;
+}
+
 bool	write_ok(List *ptr, int error)
 {
 	string path;
@@ -73,11 +89,17 @@ bool	write_ok(List *ptr, int error)
 	string const name_file(path);
 	ofstream MyFlux(name_file.c_str());
 
-	print_message("Hello buddy, write your name server here : ");
+	print_message("Hello buddy, type your name server here : ");
+	print_message("Or you can type option if you want to change ur config :)");
 	cin >> server;
 	server = get_realName(server);
+	if (server == "option")
+	  add_real();
 	(*ptr).AddNode(server, 0);
-	number_server = (*ptr).FindInNodeServer();
+	number_server = (*ptr).FindInNodeServer(ptr);
+	print_message("NOMBRE : ");
+	cout << number_server << endl;
+
 	if (number_server == 0)
 	{
 		error++;
@@ -115,12 +137,11 @@ int		main( )
 	string ligne;
 	string	server;
 
+	ptr.GetFullList(&ptr);
+	ptr.PrintDoubleList();
 	while (getline(fichier, ligne))
 	  ptr.AddNode(ligne, 0);
 	fichier.close();
-	ptr.AddNodeDouble("salut", "hello");
-	ptr.AddNodeDouble("mdr", "jtm");
-	ptr.PrintDoubleList();
 	if ((ptr.IfSomethingInNode()))
 	  {
 	    if ((write_ok(&ptr, error)) == true)

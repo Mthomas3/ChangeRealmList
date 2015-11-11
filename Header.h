@@ -18,6 +18,7 @@ private:
 		node	*next;
 		string	realmlist;
 		string real;
+	  string data_real;
 	};
 
 	typedef struct node		*nodePtr;
@@ -26,7 +27,10 @@ private:
 	nodePtr		head_real;
 	nodePtr		curr;
 	nodePtr		curr_real;
+	nodePtr		curr_name;
 	nodePtr		temp;
+	nodePtr		head_name;
+
 public:
 
 	List();
@@ -34,11 +38,12 @@ public:
 	void AddNode(string addData, int size);
 	void DeleteNode(string delData);
 	bool IfSomethingInNode();
-	int FindInNodeServer();
+	int FindInNodeServer(List *ptr);
 	string GetPath();
 	void PrintList(int list);
 	void AddNodeDouble(string NodeServer, string NodeReal);
 	void PrintDoubleList( void );
+	void GetFullList( List *ptr );
 };
 
 #endif /* LIST_H  */

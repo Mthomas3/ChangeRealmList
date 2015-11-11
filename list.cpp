@@ -13,6 +13,7 @@ List::List()
 	temp = NULL;
 	curr_real = NULL;
 	head_real = NULL;
+	head_name = NULL;
 }
 
 void	List::PrintList(int list)
@@ -21,11 +22,10 @@ void	List::PrintList(int list)
 	while (curr != NULL)
 	{
 	  if (list == 0)
-	    cout << curr->data << endl;
+	    cout << curr->data_real << endl;
 	  else if (list == 1)
 	    {
 	      cout << curr->server;
-	      cout << "     end   :   ";
 	      cout << curr->realmlist;
 	      cout << endl;
 	    }
@@ -35,15 +35,12 @@ void	List::PrintList(int list)
 
 void		List::PrintDoubleList( void )
 {
-	curr = head;
 	curr_real = head_real;
-	while (NULL != curr && NULL != curr_real)
+	while (NULL != curr_real)
 	  {
-	    cout << curr->data;
-	    cout << " with  ";
+	    cout << curr_real->data_real;
 	    cout << curr_real->real;
 	    cout << endl;
-	    curr = curr->next;
 	    curr_real = curr_real->next;
 	  }
 }
@@ -71,22 +68,27 @@ bool		List::IfNode(string match)
 	}
 }
 
-int		List::FindInNodeServer()
+int		List::FindInNodeServer(List *ptr)
 {
 	nodePtr n = NULL;
 	int number(0);
 
 	curr = head;
-	while (curr != NULL)
+	curr_real = head_real;
+	cout << "print" << endl;
+	(*ptr).PrintList(0);
+	cout << curr->next->next->next->data << endl;
+	while (curr != NULL && NULL != curr_real)
 	{
-		if (curr->data == "monster")
-			number = 1;
-		else if (curr->data == "chimera")
-			number = 2;
-		else if (curr->data == "molten")
+		if (curr->data == curr_real->real)
 			number = 3;
+		else if (curr->data == curr_real->real)
+			number = 2;
+		else if (curr->data == curr_real->real)
+			number = 1;
 			temp = curr;
 		curr = curr->next;
+		curr_real = curr_real->next;
 	}
 	return number;
 }
@@ -134,30 +136,42 @@ bool	List::IfSomethingInNode()
 		return true;
 }
 
+void		List::GetFullList( List *ptr )
+{
+  (*ptr).AddNodeDouble("molten", " !real molten! ");
+  (*ptr).AddNodeDouble("chimera", " !real chimera! ");
+  (*ptr).AddNodeDouble("monster", " !real monster! ");
+  (*ptr).AddNodeDouble("caca", " !real caca! ");
+}
+
+//need to fix this function ...
+
 void		List::AddNodeDouble(string NodeServer, string NodeReal)
 {
   nodePtr	n = new node;
   nodePtr	j = new node;
 
+  cout << NodeServer << endl;
   n->next = NULL;
   j->next = NULL;
-  n->data = NodeServer;
+  n->data_real = NodeServer;
   j->real = NodeReal;
-  if (head != NULL && NULL != head_real)
+
+  if (NULL != head_real && NULL != head_name)
     {
-      curr = head;
       curr_real = head_real;
-      while (NULL != curr->next && NULL != curr_real->next)
+      curr_name = head_name;
+      while (NULL != curr_name->next && NULL != curr_real->next)
 	{
-	  curr = curr->next;
+	  curr_name = curr_name->next;
 	  curr_real = curr_real->next;
 	}
-      curr->next = n;
+      curr_name->next = n;
       curr_real->next = j;
     }
   else
     {
-      head = n;
+      head_name = n;
       head_real = j;
     }
 }
