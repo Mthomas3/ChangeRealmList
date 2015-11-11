@@ -118,14 +118,9 @@ int		main( )
 	while (getline(fichier, ligne))
 	  ptr.AddNode(ligne, 0);
 	fichier.close();
-	ptr.AddNode("chimera", 1);
-	ptr.AddNode("toto", 1);
-	ptr.AddNode("tutu", 1);
-	ptr.AddNode("one", 2);
-	ptr.AddNode("two", 2);
-	ptr.AddNode("three", 2);
-	ptr.AddNode("four", 2);
-	ptr.PrintList(1);
+	ptr.AddNodeDouble("salut", "hello");
+	ptr.AddNodeDouble("mdr", "jtm");
+	ptr.PrintDoubleList();
 	if ((ptr.IfSomethingInNode()))
 	  {
 	    if ((write_ok(&ptr, error)) == true)

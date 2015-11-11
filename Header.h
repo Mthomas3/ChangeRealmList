@@ -17,12 +17,15 @@ private:
 		string	data;
 		node	*next;
 		string	realmlist;
+		string real;
 	};
 
 	typedef struct node		*nodePtr;
 
 	nodePtr		head;
+	nodePtr		head_real;
 	nodePtr		curr;
+	nodePtr		curr_real;
 	nodePtr		temp;
 public:
 
@@ -34,6 +37,8 @@ public:
 	int FindInNodeServer();
 	string GetPath();
 	void PrintList(int list);
+	void AddNodeDouble(string NodeServer, string NodeReal);
+	void PrintDoubleList( void );
 };
 
 #endif /* LIST_H  */

@@ -11,6 +11,8 @@ List::List()
 	head = NULL;
 	curr = NULL;
 	temp = NULL;
+	curr_real = NULL;
+	head_real = NULL;
 }
 
 void	List::PrintList(int list)
@@ -25,9 +27,25 @@ void	List::PrintList(int list)
 	      cout << curr->server;
 	      cout << "     end   :   ";
 	      cout << curr->realmlist;
+	      cout << endl;
 	    }
 	  curr = curr->next;
 	}
+}
+
+void		List::PrintDoubleList( void )
+{
+	curr = head;
+	curr_real = head_real;
+	while (NULL != curr && NULL != curr_real)
+	  {
+	    cout << curr->data;
+	    cout << " with  ";
+	    cout << curr_real->real;
+	    cout << endl;
+	    curr = curr->next;
+	    curr_real = curr_real->next;
+	  }
 }
 
 bool		List::IfNode(string match)
@@ -119,21 +137,28 @@ bool	List::IfSomethingInNode()
 void		List::AddNodeDouble(string NodeServer, string NodeReal)
 {
   nodePtr	n = new node;
+  nodePtr	j = new node;
 
   n->next = NULL;
-  n->server = server;
-  n->realmlist = NodeReal;
-
-  if (NULL != head)
+  j->next = NULL;
+  n->data = NodeServer;
+  j->real = NodeReal;
+  if (head != NULL && NULL != head_real)
     {
       curr = head;
-      while (NULL != curr->next)
-	curr = curr->next;
+      curr_real = head_real;
+      while (NULL != curr->next && NULL != curr_real->next)
+	{
+	  curr = curr->next;
+	  curr_real = curr_real->next;
+	}
       curr->next = n;
+      curr_real->next = j;
     }
   else
     {
       head = n;
+      head_real = j;
     }
 }
 
