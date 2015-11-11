@@ -15,8 +15,8 @@ string get_realName(string server)
 	size_server = server.size();
 
 	while (++a < size_server)
-		if (server[a] >= 'A' && server[a] <= 'Z')
-			server[a] = server[a] + 32;
+	if (server[a] >= 'A' && server[a] <= 'Z')
+		server[a] = server[a] + 32;
 	return server;
 }
 
@@ -56,14 +56,14 @@ void	print_error()
 	print_message("Name server is wrong, try another please!");
 }
 
-void	end_program()
+bool	end_program()
 {
 	print_message("end of program too many errors, im sorry!");
 	system("pause");
-	exit(1);
+	return false;
 }
 
-void	write_ok(List *ptr, int error)
+bool	write_ok(List *ptr, int error)
 {
 	string path;
 	string server;
@@ -76,13 +76,16 @@ void	write_ok(List *ptr, int error)
 	print_message("Hello buddy, write your name server here : ");
 	cin >> server;
 	server = get_realName(server);
-	(*ptr).AddNode(server);
+	(*ptr).AddNode(server, 0);
 	number_server = (*ptr).FindInNodeServer();
 	if (number_server == 0)
 	{
 		error++;
 		print_error();
-		error > 20 ? end_program() : write_ok(ptr, error);
+		if ((error > 20))
+		  return end_program();
+		else
+		  write_ok(ptr, error);
 	}
 	if (MyFlux)
 	{
@@ -100,21 +103,38 @@ void	write_ok(List *ptr, int error)
 	{
 		print_message("can't write in this file, sorry");
 	}
-	print_message("your realmlist has been changed!");
+	return true;
 }
 
-int main( )
+int		main( )
 {
-	List ptr;
+	List	ptr;
 	int	error(0);
 	ifstream fichier("test.txt", ios::in);
 	string contenu;
 	string ligne;
+	string	server;
 
 	while (getline(fichier, ligne))
-			ptr.AddNode(ligne);
+	  ptr.AddNode(ligne, 0);
 	fichier.close();
-	ptr.IfSomethingInNode() ? write_ok(&ptr, error) : write_in_file();
+	ptr.AddNode("chimera", 1);
+	ptr.AddNode("toto", 1);
+	ptr.AddNode("tutu", 1);
+	ptr.AddNode("one", 2);
+	ptr.AddNode("two", 2);
+	ptr.AddNode("three", 2);
+	ptr.AddNode("four", 2);
+	ptr.PrintList(1);
+	if ((ptr.IfSomethingInNode()))
+	  {
+	    if ((write_ok(&ptr, error)) == true)
+	      print_message("Your realmlist has been changed!:)\n");
+	    else
+	      return false;
+	  }
+	else
+	  write_in_file();
 	system("pause");
 	return 0;
 }

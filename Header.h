@@ -11,10 +11,12 @@ using namespace std;
 
 class List {
 
-public:
+private:
 	struct node {
+		string	server;
 		string	data;
 		node	*next;
+		string	realmlist;
 	};
 
 	typedef struct node		*nodePtr;
@@ -26,12 +28,12 @@ public:
 
 	List();
 	bool IfNode(string data);
-	void AddNode(string addData);
+	void AddNode(string addData, int size);
 	void DeleteNode(string delData);
 	bool IfSomethingInNode();
 	int FindInNodeServer();
 	string GetPath();
-	void PrintList();
+	void PrintList(int list);
 };
 
 #endif /* LIST_H  */

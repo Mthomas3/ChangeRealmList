@@ -13,13 +13,20 @@ List::List()
 	temp = NULL;
 }
 
-void	List::PrintList()
+void	List::PrintList(int list)
 {
 	curr = head;
 	while (curr != NULL)
 	{
-		cout << curr->data << endl;
-		curr = curr->next;
+	  if (list == 0)
+	    cout << curr->data << endl;
+	  else if (list == 1)
+	    {
+	      cout << curr->server;
+	      cout << "     end   :   ";
+	      cout << curr->realmlist;
+	    }
+	  curr = curr->next;
 	}
 }
 
@@ -109,12 +116,38 @@ bool	List::IfSomethingInNode()
 		return true;
 }
 
-void	List::AddNode(string addData)
+void		List::AddNodeDouble(string NodeServer, string NodeReal)
+{
+  nodePtr	n = new node;
+
+  n->next = NULL;
+  n->server = server;
+  n->realmlist = NodeReal;
+
+  if (NULL != head)
+    {
+      curr = head;
+      while (NULL != curr->next)
+	curr = curr->next;
+      curr->next = n;
+    }
+  else
+    {
+      head = n;
+    }
+}
+
+void	List::AddNode(string addData, int number_list)
 {
 	nodePtr	n = new node;
 
 	n->next = NULL;
-	n->data = addData;
+	if (number_list == 0)
+	  n->data = addData;
+	else if (number_list == 1)
+	  n->server = addData;
+	else if (number_list == 2)
+	  n->realmlist = addData;
 
 	if (head != NULL)
 	{
