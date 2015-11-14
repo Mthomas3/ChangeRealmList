@@ -138,7 +138,6 @@ int		main( )
 	string	server;
 
 	ptr.GetFullList(&ptr);
-	ptr.PrintDoubleList();
 	while (getline(fichier, ligne))
 	  ptr.AddNode(ligne, 0);
 	fichier.close();

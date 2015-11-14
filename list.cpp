@@ -27,7 +27,7 @@ void	List::PrintList(int list)
 	while (curr != NULL)
 	{
 	  if (list == 0)
-	    cout << curr->data_real << endl;
+	    cout << curr->data << endl;
 	  else if (list == 1)
 	    {
 	      cout << curr->server;
@@ -36,6 +36,23 @@ void	List::PrintList(int list)
 	    }
 	  curr = curr->next;
 	}
+}
+
+int		List::FindInNodeServer(List *ptr)
+{
+  int	number(0);
+  string server;
+
+  curr = head;
+  curr_one = head_one;
+  server = curr->next->data;
+  while (NULL != curr_one)
+    {
+      if (server == curr_one->data_one)
+	number = 1;
+      curr_one = curr_one->next;
+    }
+  return number;
 }
 
 void		List::PrintDoubleList( void )
@@ -73,31 +90,6 @@ bool		List::IfNode(string match)
 		delete n;
 		return true;
 	}
-}
-
-int		List::FindInNodeServer(List *ptr)
-{
-	nodePtr n = NULL;
-	int number(0);
-
-	curr = head;
-	curr_real = head_real;
-	cout << "print" << endl;
-	(*ptr).PrintList(0);
-	cout << curr->next->next->next->data << endl;
-	while (curr != NULL && NULL != curr_real)
-	{
-		if (curr->data == curr_real->real)
-			number = 3;
-		else if (curr->data == curr_real->real)
-			number = 2;
-		else if (curr->data == curr_real->real)
-			number = 1;
-			temp = curr;
-		curr = curr->next;
-		curr_real = curr_real->next;
-	}
-	return number;
 }
 
 void	List::DeleteNode(string delData)
@@ -149,6 +141,8 @@ void		List::GetFullList( List *ptr )
   (*ptr).AddNodeDouble("chimera", " !real chimera! ");
   (*ptr).AddNodeDouble("monster", " !real monster! ");
   (*ptr).AddNodeDouble("caca", " !real caca! ");
+  (*ptr).AddNodeDouble("cacaLOL", " !real cacaLOL! ");
+
 }
 
 // fixed!
