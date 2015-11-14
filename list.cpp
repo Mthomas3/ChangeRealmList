@@ -11,9 +11,14 @@ List::List()
 	head = NULL;
 	curr = NULL;
 	temp = NULL;
+	curr_name = NULL;
 	curr_real = NULL;
 	head_real = NULL;
 	head_name = NULL;
+	head_one = NULL;
+	head_two = NULL;
+	curr_one = NULL;
+	curr_two = NULL;
 }
 
 void	List::PrintList(int list)
@@ -35,13 +40,15 @@ void	List::PrintList(int list)
 
 void		List::PrintDoubleList( void )
 {
-	curr_real = head_real;
-	while (NULL != curr_real)
+	curr_one = head_one;
+	curr_two = head_two;
+	while (NULL != curr_one && NULL != curr_two)
 	  {
-	    cout << curr_real->data_real;
-	    cout << curr_real->real;
+	    cout << curr_one->data_one;
+	    cout << curr_two->data_two;
 	    cout << endl;
-	    curr_real = curr_real->next;
+	    curr_one = curr_one->next;
+	    curr_two = curr_two->next;
 	  }
 }
 
@@ -144,35 +151,32 @@ void		List::GetFullList( List *ptr )
   (*ptr).AddNodeDouble("caca", " !real caca! ");
 }
 
-//need to fix this function ...
+// fixed!
 
 void		List::AddNodeDouble(string NodeServer, string NodeReal)
 {
-  nodePtr	n = new node;
-  nodePtr	j = new node;
+  nodePtr n = new node;
 
-  cout << NodeServer << endl;
   n->next = NULL;
-  j->next = NULL;
-  n->data_real = NodeServer;
-  j->real = NodeReal;
 
-  if (NULL != head_real && NULL != head_name)
+  n->data_one = NodeServer;
+  n->data_two = NodeReal;
+  if (head_one != NULL && head_two != NULL)
     {
-      curr_real = head_real;
-      curr_name = head_name;
-      while (NULL != curr_name->next && NULL != curr_real->next)
+      curr_one = head_one;
+      curr_two = head_two;
+      while (curr_one->next != NULL && curr_two->next != NULL)
 	{
-	  curr_name = curr_name->next;
-	  curr_real = curr_real->next;
+	  curr_one = curr_one->next;
+	  curr_two = curr_two->next;
 	}
-      curr_name->next = n;
-      curr_real->next = j;
+      curr_one->next = n;
+      curr_two->next = n;
     }
   else
     {
-      head_name = n;
-      head_real = j;
+      head_one = n;
+      head_two = n;
     }
 }
 

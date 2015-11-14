@@ -15,6 +15,8 @@ private:
 	struct node {
 		string	server;
 		string	data;
+	  string data_one;
+	  string data_two;
 		node	*next;
 		string	realmlist;
 		string real;
@@ -30,6 +32,10 @@ private:
 	nodePtr		curr_name;
 	nodePtr		temp;
 	nodePtr		head_name;
+	nodePtr		head_one;
+	nodePtr		head_two;
+	nodePtr		curr_one;
+	nodePtr		curr_two;
 
 public:
 
