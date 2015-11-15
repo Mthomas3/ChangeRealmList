@@ -21,6 +21,18 @@ List::List()
 	curr_two = NULL;
 }
 
+string	List::write_list( void )
+{
+  curr_two = head_two;
+  while (NULL != curr_two)
+    {
+      if (curr_two->server_exit == 1)
+	return curr_two->data_two;
+      curr_two = curr_two->next;
+    }
+  return "ya rien a afficher";
+}
+
 void	List::PrintList(int list)
 {
 	curr = head;
@@ -38,9 +50,8 @@ void	List::PrintList(int list)
 	}
 }
 
-int		List::FindInNodeServer(List *ptr)
+void		List::FindInNodeServer(List *ptr)
 {
-  int	number(0);
   string server;
 
   curr = head;
@@ -49,10 +60,12 @@ int		List::FindInNodeServer(List *ptr)
   while (NULL != curr_one)
     {
       if (server == curr_one->data_one)
-	number = 1;
+	{
+	  curr_one->server_exit = 1;
+	  break;
+	}
       curr_one = curr_one->next;
     }
-  return number;
 }
 
 void		List::PrintDoubleList( void )
@@ -63,6 +76,7 @@ void		List::PrintDoubleList( void )
 	  {
 	    cout << curr_one->data_one;
 	    cout << curr_two->data_two;
+	    cout << curr_one->server_exit;
 	    cout << endl;
 	    curr_one = curr_one->next;
 	    curr_two = curr_two->next;

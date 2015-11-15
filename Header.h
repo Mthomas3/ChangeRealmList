@@ -20,6 +20,7 @@ private:
 		node	*next;
 		string	realmlist;
 		string real;
+	  int	server_exit;
 	  string data_real;
 	};
 
@@ -44,12 +45,13 @@ public:
 	void AddNode(string addData, int size);
 	void DeleteNode(string delData);
 	bool IfSomethingInNode();
-	int FindInNodeServer(List *ptr);
+	void FindInNodeServer(List *ptr);
 	string GetPath();
 	void PrintList(int list);
 	void AddNodeDouble(string NodeServer, string NodeReal);
 	void PrintDoubleList( void );
 	void GetFullList( List *ptr );
+	string write_list( void );
 };
 
 #endif /* LIST_H  */

@@ -63,19 +63,26 @@ bool	end_program()
 	return false;
 }
 
-bool		add_real( void )
+bool		add_real( List *ptr )
 {
   string	reply;
+  string	name_server;
+  string	name_realmlist;
 
   print_message("Do you want to add a realmlist?");
   print_message("type yes or no");
   cin >> reply;
   if (reply == "no")
     return false;
-  else
+  else if (reply == "yes") //fix ici
     {
-      
+      print_message("type your name server here : ");
+      cin >> name_server;
+      print_message("type your realmlist here :");
+      cin >> name_realmlist;
     }
+  print_message("Modification succeded!");
+  (*ptr).AddNodeDouble(name_server, name_realmlist);
   return true;
 }
 
@@ -94,32 +101,26 @@ bool	write_ok(List *ptr, int error)
 	cin >> server;
 	server = get_realName(server);
 	if (server == "option")
-	  add_real();
+	  {
+	    add_real(ptr);
+	    print_message("So now, which server do you want to play?");
+	    cin >> server;
+	    server = get_realName(server);
+	  }
 	(*ptr).AddNode(server, 0);
-	number_server = (*ptr).FindInNodeServer(ptr);
-	print_message("NOMBRE : ");
-	cout << number_server << endl;
-
-	if (number_server == 0)
-	{
-		error++;
-		print_error();
-		if ((error > 20))
-		  return end_program();
-		else
-		  write_ok(ptr, error);
-	}
+	(*ptr).FindInNodeServer(ptr);
+	// if (number_server == 0)
+	// {
+	// 	error++;
+	// 	print_error();
+	// 	if ((error > 20))
+	// 	  return end_program();
+	// 	else
+	// 	  write_ok(ptr, error);
+	// }
 	if (MyFlux)
 	{
-		if (number_server == 1)
-			MyFlux << "set realmlist logon.warmane.com" << endl;
-		else if (number_server == 2)
-			MyFlux << "set realmlist wow-phoenixia.com" << endl;
-		else if (number_server == 3)
-		{
-			MyFlux << "set realmlist logon.monster-wow.com" << endl;
-			MyFlux << "set patchlist logon.monster-wow.com" << endl;
-		}
+	  MyFlux << (*ptr).write_list();
 	}
 	else
 	{
