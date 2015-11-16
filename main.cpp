@@ -63,6 +63,19 @@ bool	end_program()
 	return false;
 }
 
+void		write_file(string server, string realmlist)
+{
+  std::ofstream ofs;
+
+  ofs.open ("test.txt", std::ofstream::out | std::ofstream::app);
+  ofs << "\n";
+  ofs << server;
+  ofs << "\n";
+  ofs << realmlist;
+  ofs << "\n";
+  ofs.close();
+}
+
 bool		add_real( List *ptr )
 {
   string	reply;
@@ -83,6 +96,7 @@ bool		add_real( List *ptr )
     }
   print_message("Modification succeded!");
   (*ptr).AddNodeDouble(name_server, name_realmlist);
+  write_file(name_server, name_realmlist);
   return true;
 }
 
@@ -139,6 +153,7 @@ int		main( )
 	string	server;
 
 	ptr.GetFullList(&ptr);
+	ptr.AddFullFile(&ptr);
 	while (getline(fichier, ligne))
 	  ptr.AddNode(ligne, 0);
 	fichier.close();

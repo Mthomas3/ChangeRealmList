@@ -52,6 +52,7 @@ public:
 	void PrintDoubleList( void );
 	void GetFullList( List *ptr );
 	string write_list( void );
+	void AddFullFile( List *ptr );
 };
 
 #endif /* LIST_H  */

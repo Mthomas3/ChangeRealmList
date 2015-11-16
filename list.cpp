@@ -33,6 +33,18 @@ string	List::write_list( void )
   return "ya rien a afficher";
 }
 
+//fixed this function, charge le fichier avec tous les serveur au début
+
+void	List::AddFullFile( List *ptr )
+{
+  curr = head;
+  while (NULL != curr)
+    {
+      cout << curr->data;
+      curr = curr->next;
+    }
+}
+
 void	List::PrintList(int list)
 {
 	curr = head;
