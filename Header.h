@@ -53,6 +53,7 @@ public:
 	void GetFullList( List *ptr );
 	string write_list( void );
 	void AddFullFile( List *ptr );
+	bool FindError( List *list );
 };
 
 #endif /* LIST_H  */

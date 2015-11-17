@@ -21,6 +21,22 @@ List::List()
 	curr_two = NULL;
 }
 
+bool	List::FindError( List *ptr )
+{
+  int	error(0);
+
+  curr_two = head_two;
+  while (NULL != curr_two)
+    {
+      if (curr_two->server_exit == 1)
+	++error;
+      curr_two = curr_two->next;
+    }
+  if (error == 0)
+    return false;
+  return true;
+}
+
 string	List::write_list( void )
 {
   curr_two = head_two;
@@ -30,19 +46,7 @@ string	List::write_list( void )
 	return curr_two->data_two;
       curr_two = curr_two->next;
     }
-  return "ya rien a afficher";
-}
-
-//fixed this function, charge le fichier avec tous les serveur au début
-
-void	List::AddFullFile( List *ptr )
-{
-  curr = head;
-  while (NULL != curr)
-    {
-      cout << curr->data;
-      curr = curr->next;
-    }
+  return NULL;
 }
 
 void	List::PrintList(int list)
@@ -72,10 +76,7 @@ void		List::FindInNodeServer(List *ptr)
   while (NULL != curr_one)
     {
       if (server == curr_one->data_one)
-	{
-	  curr_one->server_exit = 1;
-	  break;
-	}
+	curr_one->server_exit = 1;
       curr_one = curr_one->next;
     }
 }
