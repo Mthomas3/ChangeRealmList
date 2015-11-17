@@ -13,15 +13,15 @@ class List {
 
 private:
 	struct node {
-		string	server;
-		string	data;
-	  string data_one;
-	  string data_two;
-		node	*next;
-		string	realmlist;
-		string real;
-	  int	server_exit;
-	  string data_real;
+	  string	server;
+	  string	data;
+	  string	data_one;
+	  string	data_two;
+	  node		*next;
+	  string	realmlist;
+	  string	real;
+	  int		server_exit;
+	  string	data_real;
 	};
 
 	typedef struct node		*nodePtr;
@@ -41,19 +41,19 @@ private:
 public:
 
 	List();
-	bool IfNode(string data);
-	void AddNode(string addData, int size);
-	void DeleteNode(string delData);
-	bool IfSomethingInNode();
-	void FindInNodeServer(List *ptr);
-	string GetPath();
-	void PrintList(int list);
-	void AddNodeDouble(string NodeServer, string NodeReal);
-	void PrintDoubleList( void );
-	void GetFullList( List *ptr );
-	string write_list( void );
-	void AddFullFile( List *ptr );
-	bool FindError( List *list );
+	bool		IfNode(string data);
+	void		AddNode(string addData, int size);
+	void		DeleteNode(string delData);
+	bool		IfSomethingInNode();
+	void		FindInNodeServer(List *ptr);
+	string		GetPath();
+	void		PrintList(int list);
+	void		AddNodeDouble(string NodeServer, string NodeReal);
+	void		PrintDoubleList( void );
+	void		GetFullList( List *ptr );
+	string		write_list( void );
+	void		AddFullFile( List *ptr );
+	bool		FindError( List *list );
 };
 
-#endif /* LIST_H  */
+#endif			/* LIST_H  */

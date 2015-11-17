@@ -6,24 +6,24 @@
 
 using namespace std;
 
-List::List()
+List::List( )
 {
-	head = NULL;
-	curr = NULL;
-	temp = NULL;
-	curr_name = NULL;
-	curr_real = NULL;
-	head_real = NULL;
-	head_name = NULL;
-	head_one = NULL;
-	head_two = NULL;
-	curr_one = NULL;
-	curr_two = NULL;
+  head = NULL;
+  curr = NULL;
+  temp = NULL;
+  curr_name = NULL;
+  curr_real = NULL;
+  head_real = NULL;
+  head_name = NULL;
+  head_one = NULL;
+  head_two = NULL;
+  curr_one = NULL;
+  curr_two = NULL;
 }
 
-bool	List::FindError( List *ptr )
+bool		List::FindError( List *ptr )
 {
-  int	error(0);
+  int		error(0);
 
   curr_two = head_two;
   while (NULL != curr_two)
@@ -37,7 +37,7 @@ bool	List::FindError( List *ptr )
   return true;
 }
 
-string	List::write_list( void )
+string		List::write_list( void )
 {
   curr_two = head_two;
   while (NULL != curr_two)
@@ -49,26 +49,26 @@ string	List::write_list( void )
   return NULL;
 }
 
-void	List::PrintList(int list)
+void		List::PrintList(int list)
 {
-	curr = head;
-	while (curr != NULL)
+  curr = head;
+  while (curr != NULL)
+    {
+      if (list == 0)
+	cout << curr->data << endl;
+      else if (list == 1)
 	{
-	  if (list == 0)
-	    cout << curr->data << endl;
-	  else if (list == 1)
-	    {
-	      cout << curr->server;
-	      cout << curr->realmlist;
-	      cout << endl;
-	    }
-	  curr = curr->next;
+	  cout << curr->server;
+	  cout << curr->realmlist;
+	  cout << endl;
 	}
+      curr = curr->next;
+    }
 }
 
 void		List::FindInNodeServer(List *ptr)
 {
-  string server;
+  string	server;
 
   curr = head;
   curr_one = head_one;
@@ -83,83 +83,83 @@ void		List::FindInNodeServer(List *ptr)
 
 void		List::PrintDoubleList( void )
 {
-	curr_one = head_one;
-	curr_two = head_two;
-	while (NULL != curr_one && NULL != curr_two)
-	  {
-	    cout << curr_one->data_one;
-	    cout << curr_two->data_two;
-	    cout << curr_one->server_exit;
-	    cout << endl;
-	    curr_one = curr_one->next;
-	    curr_two = curr_two->next;
-	  }
+  curr_one = head_one;
+  curr_two = head_two;
+  while (NULL != curr_one && NULL != curr_two)
+    {
+      cout << curr_one->data_one;
+      cout << curr_two->data_two;
+      cout << curr_one->server_exit;
+      cout << endl;
+      curr_one = curr_one->next;
+      curr_two = curr_two->next;
+    }
 }
 
 bool		List::IfNode(string match)
 {
-	nodePtr	n = NULL;
+  nodePtr	n = NULL;
 
-	temp = head;
-	curr = head;
-	while (curr != NULL && curr->data != match)
-	{
-		temp = curr;
-		curr = curr->next;
-	}
-	if (curr == NULL)
-	{
-		delete n;
-		return false;
-	}
-	else
-	{
-		delete n;
-		return true;
-	}
+  temp = head;
+  curr = head;
+  while (curr != NULL && curr->data != match)
+    {
+      temp = curr;
+      curr = curr->next;
+    }
+  if (curr == NULL)
+    {
+      delete n;
+      return false;
+    }
+  else
+    {
+      delete n;
+      return true;
+    }
 }
 
-void	List::DeleteNode(string delData)
+void		List::DeleteNode(string delData)
 {
-	nodePtr		delPtr = NULL;
-	temp = head;
-	curr = head;
-	while (curr != NULL && curr->data != delData)
-	{
-		temp = curr;
-		curr = curr->next;
-	}
-	if (curr == NULL)
-		delete delPtr;
-	else
-	{
-		delPtr = curr;
-		curr = curr->next;
-		temp->next = curr;
-		delete delPtr;
-	}
+  nodePtr	delPtr = NULL;
+  temp = head;
+  curr = head;
+  while (curr != NULL && curr->data != delData)
+    {
+      temp = curr;
+      curr = curr->next;
+    }
+  if (curr == NULL)
+    delete delPtr;
+  else
+    {
+      delPtr = curr;
+      curr = curr->next;
+      temp->next = curr;
+      delete delPtr;
+    }
 
 }
 
-string List::GetPath()
+string		List::GetPath()
 {
-	nodePtr n = NULL;
+  nodePtr	n = NULL;
 
-	curr = head;
-	if (curr != NULL)
-		return curr->data;
-	return NULL;
+  curr = head;
+  if (curr != NULL)
+    return curr->data;
+  return NULL;
 }
 
-bool	List::IfSomethingInNode()
+bool		List::IfSomethingInNode()
 {
-	nodePtr	n = NULL;
+  nodePtr	n = NULL;
 
-	curr = head;
-	if (curr == NULL)
-		return false;
-	else
-		return true;
+  curr = head;
+  if (curr == NULL)
+    return false;
+  else
+    return true;
 }
 
 void		List::GetFullList( List *ptr )
@@ -169,17 +169,15 @@ void		List::GetFullList( List *ptr )
   (*ptr).AddNodeDouble("monster", " !real monster! ");
   (*ptr).AddNodeDouble("caca", " !real caca! ");
   (*ptr).AddNodeDouble("cacaLOL", " !real cacaLOL! ");
-
 }
 
 // fixed!
 
 void		List::AddNodeDouble(string NodeServer, string NodeReal)
 {
-  nodePtr n = new node;
+  nodePtr	n = new node;
 
   n->next = NULL;
-
   n->data_one = NodeServer;
   n->data_two = NodeReal;
   if (head_one != NULL && head_two != NULL)
@@ -201,30 +199,28 @@ void		List::AddNodeDouble(string NodeServer, string NodeReal)
     }
 }
 
-void	List::AddNode(string addData, int number_list)
+void		List::AddNode(string addData, int number_list)
 {
-	nodePtr	n = new node;
+  nodePtr	n = new node;
 
-	n->next = NULL;
-	if (number_list == 0)
-	  n->data = addData;
-	else if (number_list == 1)
-	  n->server = addData;
-	else if (number_list == 2)
-	  n->realmlist = addData;
-
-	if (head != NULL)
+  n->next = NULL;
+  if (number_list == 0)
+    n->data = addData;
+  else if (number_list == 1)
+    n->server = addData;
+  else if (number_list == 2)
+    n->realmlist = addData;
+  if (head != NULL)
+    {
+      curr = head;
+      while (curr->next != NULL)
 	{
-		curr = head;
-		while (curr->next != NULL)
-		{
-			curr = curr->next;
-		}
-		curr->next = n;
+	  curr = curr->next;
 	}
-	else
-	{
-		head = n;
-	}
-
+      curr->next = n;
+    }
+  else
+    {
+      head = n;
+    }
 }
