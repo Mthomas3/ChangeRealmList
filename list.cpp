@@ -11,10 +11,6 @@ List::List( )
   head = NULL;
   curr = NULL;
   temp = NULL;
-  curr_name = NULL;
-  curr_real = NULL;
-  head_real = NULL;
-  head_name = NULL;
   head_one = NULL;
   head_two = NULL;
   curr_one = NULL;
@@ -66,19 +62,32 @@ void		List::PrintList(int list)
     }
 }
 
-void		List::FindInNodeServer(List *ptr)
+string		List::GetLastNode( void )
+{
+  curr = head;
+  while (NULL != curr)
+    {
+      if (curr->next == NULL)
+	return curr->data;
+      curr = curr->next;
+    }
+  return NULL;
+}
+
+bool		List::FindInNodeServer(List *ptr)
 {
   string	server;
 
   curr = head;
   curr_one = head_one;
-  server = curr->next->data;
+  server = GetLastNode(); //If server NULL
   while (NULL != curr_one)
     {
       if (server == curr_one->data_one)
 	curr_one->server_exit = 1;
       curr_one = curr_one->next;
     }
+  return true;
 }
 
 void		List::PrintDoubleList( void )
@@ -168,8 +177,6 @@ void		List::GetFullList( List *ptr )
   (*ptr).AddNodeDouble("chimera", "set realmlist wow-phoenixia.com");
   (*ptr).AddNodeDouble("monster", "set realmlist logon.monster-wow.com\nset patchlist logon.monster-wow.com");
 }
-
-// fixed!
 
 void		List::AddNodeDouble(string NodeServer, string NodeReal)
 {

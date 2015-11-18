@@ -27,12 +27,8 @@ private:
 	typedef struct node		*nodePtr;
 
 	nodePtr		head;
-	nodePtr		head_real;
 	nodePtr		curr;
-	nodePtr		curr_real;
-	nodePtr		curr_name;
 	nodePtr		temp;
-	nodePtr		head_name;
 	nodePtr		head_one;
 	nodePtr		head_two;
 	nodePtr		curr_one;
@@ -45,7 +41,7 @@ public:
 	void		AddNode(string addData, int size);
 	void		DeleteNode(string delData);
 	bool		IfSomethingInNode();
-	void		FindInNodeServer(List *ptr);
+	bool		FindInNodeServer(List *ptr);
 	string		GetPath();
 	void		PrintList(int list);
 	void		AddNodeDouble(string NodeServer, string NodeReal);
@@ -54,6 +50,7 @@ public:
 	string		write_list( void );
 	void		AddFullFile( List *ptr );
 	bool		FindError( List *list );
+	string		GetLastNode( void );
 };
 
 #endif			/* LIST_H  */

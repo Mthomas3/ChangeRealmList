@@ -42,7 +42,7 @@ void		write_in_file()
   ofstream	MyFlux(name_file.c_str());
   string	path;
 
-  print_message("Hello, It's your first time here you have to type your path here :");
+  print_message("Hello, It's your first time so you have to type your path here :");
   cin >> path;
   if (MyFlux)
     {
@@ -58,8 +58,7 @@ void	print_error()
 
 bool	end_program()
 {
-  print_message("end of program too many errors, im sorry!");
-  system("pause");
+  print_message("end of program too many errors!");
   return false;
 }
 
@@ -83,17 +82,19 @@ bool		add_real( List *ptr )
   string	name_realmlist;
 
   print_message("Do you want to add a realmlist?");
-  print_message("type yes or no");
+  print_message("Type yes or no");
   cin >> reply;
-  if (reply == "no")
+  if (reply == "No")
     return false;
-  else if (reply == "yes") //fix ici
+  else if (reply == "Yes")
     {
-      print_message("type your name server here : ");
+      print_message("Type your name server here : ");
       cin >> name_server;
-      print_message("type your realmlist here :");
+      print_message("Now the realmlist name :");
       cin >> name_realmlist;
     }
+  else
+    add_real(ptr);
   print_message("Modification succeded!");
   (*ptr).AddNodeDouble(name_server, name_realmlist);
   write_file(name_server, name_realmlist);
@@ -111,7 +112,7 @@ bool		write_ok(List *ptr, int error)
   ofstream	MyFlux(name_file.c_str());
 
   print_message("Hello buddy, type your name server here : ");
-  print_message("Or you can type option if you want to change ur config :)");
+  print_message("Or you can type option if you want to change ur config");
   cin >> server;
   server = get_realName(server);
   if (server == "option")
@@ -121,30 +122,33 @@ bool		write_ok(List *ptr, int error)
       cin >> server;
       server = get_realName(server);
     }
+  else if (server == "Print server") //fix this part
+    {
+      print_message("Name server ..");
+      (*ptr).PrintDoubleList();
+    }
   (*ptr).AddNode(server, 0);
   (*ptr).FindInNodeServer(ptr);
-  (*ptr).PrintList(0);
-  if (((*ptr).FindError(ptr)) == false) //fix function si on rentre erreur plus de match après
+  if (((*ptr).FindError(ptr)) == false)
     {
       error++;
       print_error();
-      if ((error > 20))
-	return end_program(); //exit program if error ..
+      if (error > 20)
+	return end_program();
       else
 	write_ok(ptr, error);
     }
-  if (MyFlux)
-    {
-      MyFlux << (*ptr).write_list();
-    }
-  else
-    {
-      print_message("can't write in this file, sorry");
-    }
+  if (error < 20)
+    if (MyFlux)
+      {
+	MyFlux << (*ptr).write_list();
+      }
+    else
+      {
+	print_message("can't write in this file, sorry");
+      }
   return true;
 }
-
-//parsing server!
 
 void		GetFullFile( List *list )
 {
