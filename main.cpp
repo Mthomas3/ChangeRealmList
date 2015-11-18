@@ -124,7 +124,7 @@ bool		write_ok(List *ptr, int error)
   (*ptr).AddNode(server, 0);
   (*ptr).FindInNodeServer(ptr);
   (*ptr).PrintList(0);
-  if (((*ptr).FindError(ptr)) == false)
+  if (((*ptr).FindError(ptr)) == false) //fix function si on rentre erreur plus de match après
     {
       error++;
       print_error();

@@ -164,11 +164,9 @@ bool		List::IfSomethingInNode()
 
 void		List::GetFullList( List *ptr )
 {
-  (*ptr).AddNodeDouble("molten", " !real molten! ");
-  (*ptr).AddNodeDouble("chimera", " !real chimera! ");
-  (*ptr).AddNodeDouble("monster", " !real monster! ");
-  (*ptr).AddNodeDouble("caca", " !real caca! ");
-  (*ptr).AddNodeDouble("cacaLOL", " !real cacaLOL! ");
+  (*ptr).AddNodeDouble("molten", "set realmlist logon.warmane.com");
+  (*ptr).AddNodeDouble("chimera", "set realmlist wow-phoenixia.com");
+  (*ptr).AddNodeDouble("monster", "set realmlist logon.monster-wow.com\nset patchlist logon.monster-wow.com");
 }
 
 // fixed!
